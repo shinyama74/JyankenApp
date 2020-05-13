@@ -3,6 +3,7 @@ package com.example.jyankenapp
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
@@ -12,53 +13,63 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         gooButton.setOnClickListener {
-            Player.text="あなたの手はグーです"
+            myHand.setImageResource(R.drawable.mygoo)
             val number : Int = Random.nextInt(3)
 
             when(number){
                 0-> {
-                    showResult("相手の手はグーです","引き分けです","#8a000000")
+                    cpu.setImageResource(R.drawable.goo)
+                    showResult("引き分けです","#8a000000")
                 }
                 1-> {
-                    showResult("相手の手はチョキです","あなたの勝ちです","#f44336")
+                    cpu.setImageResource(R.drawable.choki)
+                    showResult("あなたの勝ちです","#f44336")
                 }
                 2-> {
-                    showResult("相手の手はパーです","あなたの負けです","#2196f3")
+                    cpu.setImageResource(R.drawable.paa)
+                    showResult("あなたの負けです","#2196f3")
                 }
             }
         }
 
         chokiButton.setOnClickListener {
-            Player.text="あなたの手はチョキです"
+            myHand.setImageResource(R.drawable.mychoki)
             val number : Int = Random.nextInt(3)
 
             when(number){
                 0-> {
-                    showResult("相手の手はグーです","あなたの負けです","#2196f3")
+                    showResult("あなたの負けです","#2196f3")
+                    cpu.setImageResource(R.drawable.goo)
                 }
                 1-> {
-                    showResult("相手の手はチョキです","引き分けです","#8a000000")
+                    showResult("引き分けです","#8a000000")
+                    cpu.setImageResource(R.drawable.choki)
                 }
                 2-> {
-                    showResult("相手の手はパーです","あなたの勝ちです","#f44336")
+                    showResult("あなたの勝ちです","#f44336")
+                    cpu.setImageResource(R.drawable.paa)
                 }
             }
         }
 
         paaButton.setOnClickListener {
-            Player.text="あなたの手はパーです"
+            myHand.setImageResource(R.drawable.mypaa)
             val number : Int = Random.nextInt(3)
 
             when(number){
                 0-> {
-                    showResult("相手の手はグーです","あなたの勝ちです","#f44336")
+                    showResult("あなたの勝ちです","#f44336")
+                    cpu.setImageResource(R.drawable.goo)
                 }
                 1-> {
-                    showResult("相手の手はチョキです","あなたの負けです","#2196f3")
+                    showResult("あなたの負けです","#2196f3")
+                    cpu.setImageResource(R.drawable.choki)
                 }
                 2-> {
-                    showResult("相手の手はパーです","引き分けです","#8a000000")
+                    showResult("引き分けです","#8a000000")
+                    cpu.setImageResource(R.drawable.paa)
                 }
             }
         }
@@ -66,8 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun showResult(cpuHand:String, resultText:String,resultColor:String){
-        cpu.text=cpuHand
+    fun showResult(resultText:String,resultColor:String){
         result.text=resultText
         result.setTextColor(Color.parseColor(resultColor))
     }
